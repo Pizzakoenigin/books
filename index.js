@@ -41,14 +41,24 @@ function createLibrary() {
     myLibrary.forEach(book => {
         createDOMElement('.display-library', 'div', 'book-container', false);
         createDOMElement('.book-container', 'h2', 'book-title', book.title);
-        createDOMElement('.book-container', 'p', 'book-title', 'written by ' + book.author);
-        createDOMElement('.book-container', 'p', 'book-title', book.pages + ' pages');
+        createDOMElement('.book-container', 'p', 'book-author', 'written by ' + book.author);
+        createDOMElement('.book-container', 'p', 'book-pages', book.pages + ' pages');
+        createDOMElement('.book-container', 'p', 'book-status', `${book.read ? 'read' : 'not read'}`)
+        createDOMElement('.book-container', 'button', `remove-book-button-${book.id}`, 'Remove book');
+        document.querySelector(`.remove-book-button-${book.id}`).addEventListener("click", () => removeBook(book.id))
     }
     )
 
     createDOMElement('.library-container', 'button', 'create-add-book-form', 'Add Book')
     document.querySelector('.create-add-book-form').addEventListener("click", createNewBookForm(),
     )
+}
+
+function removeBook(id) {
+    let findID = myLibrary.findIndex((book) => book.id == id)
+    myLibrary.splice(findID, 1)
+    document.querySelector('.library-container').innerHTML = ''
+    createLibrary()
 }
 
 function createNewBookForm() {
@@ -103,6 +113,7 @@ function addBookToLibraryFromForm(event) {
 addBookToLibrary('It', 'Stephen King', 300, true)
 addBookToLibrary('The Shining', 'Stephen King', 350, true)
 addBookToLibrary('Watchmen', 'Alan Moore', 150, true)
+addBookToLibrary('Firetrucks', 'Fred F. Firetruck', 432, false)
 createLibrary()
 
 
