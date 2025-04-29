@@ -46,14 +46,13 @@ function createLibrary() {
     }
     )
 
-    createDOMElement('.library-container', 'button', 'add-book', 'Add Book')
-    document.querySelector('.add-book').addEventListener("click", (event) => addBookToLibraryFromForm(event),
+    createDOMElement('.library-container', 'button', 'create-add-book-form', 'Add Book')
+    document.querySelector('.create-add-book-form').addEventListener("click", createNewBookForm(),
     )
 }
 
-function addBookToLibraryFromForm(event) {
-    event.preventDefault()
-    document.querySelector('.add-book').remove()
+function createNewBookForm() {
+    document.querySelector('.create-add-book-form').remove()
     createDOMElement('.library-container', 'form', 'add-book-form', '')
 
     createDOMElement('.add-book-form', 'label', 'add-book-title-label', 'Title')
@@ -72,7 +71,6 @@ function addBookToLibraryFromForm(event) {
     document.querySelector('.add-book-pages-input').id = 'book_pages'
     document.querySelector('.add-book-pages-input').type = 'number'
 
-
     createDOMElement('.add-book-form', 'h3', 'add-book-read-heading', 'Have you read the book?')
 
     createDOMElement('.add-book-form', 'label', 'add-book-read-label', 'Yes')
@@ -81,7 +79,7 @@ function addBookToLibraryFromForm(event) {
     document.querySelector('.add-book-read-input').id = 'book_read'
     document.querySelector('.add-book-read-input').type = 'radio'
     document.querySelector('.add-book-read-input').name = 'book_read_selection'
-    document.querySelector('.add-book-read-input').value = 'read'
+    document.querySelector('.add-book-read-input').value = true
 
     createDOMElement('.add-book-form', 'label', 'add-book-not-read-label', 'No')
     document.querySelector('.add-book-not-read-label').htmlFor = 'book_not_read';
@@ -89,9 +87,17 @@ function addBookToLibraryFromForm(event) {
     document.querySelector('.add-book-not-read-input').id = 'book_not_read'
     document.querySelector('.add-book-not-read-input').type = 'radio'
     document.querySelector('.add-book-not-read-input').name = 'book_read_selection'
-    document.querySelector('.add-book-not-read-input').value = 'not-read'
+    document.querySelector('.add-book-not-read-input').value = false
 
+    createDOMElement('.add-book-form', 'button', 'add-book-button', 'Add book')
+    document.querySelector('.add-book-button').addEventListener("click", (event) => addBookToLibraryFromForm(event),)
+}
 
+function addBookToLibraryFromForm(event) {
+    event.preventDefault()
+    addBookToLibrary(document.querySelector('.add-book-title-input').value, document.querySelector('.add-book-author-input').value, document.querySelector('.add-book-pages-input').value, document.querySelector('.add-book-not-read-input').value)
+    document.querySelector('.library-container').innerHTML = ''
+    createLibrary()
 }
 
 addBookToLibrary('It', 'Stephen King', 300, true)
