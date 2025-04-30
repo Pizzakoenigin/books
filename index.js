@@ -88,13 +88,22 @@ function createNewBookForm() {
     createDOMElement('.add-book-form', 'h3', 'add-book-read-heading', 'Have you read the book?')
 
     createDOMElement('.add-book-form', 'label', 'add-book-read-label', 'Read')
+    createDOMElement('.add-book-form', 'label', 'add-book-read-label', 'Read')
     document.querySelector('.add-book-read-label').htmlFor = 'book_read';
     createDOMElement('.add-book-form', 'input', 'add-book-read-input', false)
     document.querySelector('.add-book-read-input').id = 'book_read'
     document.querySelector('.add-book-read-input').type = 'radio'
     document.querySelector('.add-book-read-input').name = 'book_read_selection'
     // document.querySelector('.add-book-read-input').value = true
+    // document.querySelector('.add-book-read-input').value = true
 
+    // createDOMElement('.add-book-form', 'label', 'add-book-not-read-label', 'No')
+    // document.querySelector('.add-book-not-read-label').htmlFor = 'book_not_read';
+    // createDOMElement('.add-book-form', 'input', 'add-book-not-read-input', false)
+    // document.querySelector('.add-book-not-read-input').id = 'book_not_read'
+    // document.querySelector('.add-book-not-read-input').type = 'radio'
+    // document.querySelector('.add-book-not-read-input').name = 'book_read_selection'
+    // document.querySelector('.add-book-not-read-input').value = false
     // createDOMElement('.add-book-form', 'label', 'add-book-not-read-label', 'No')
     // document.querySelector('.add-book-not-read-label').htmlFor = 'book_not_read';
     // createDOMElement('.add-book-form', 'input', 'add-book-not-read-input', false)
