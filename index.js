@@ -17,6 +17,10 @@ Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read' : 'not read'}`
 }
 
+Book.prototype.changeReadStatus = function () {
+    this.read = !this.read
+}
+
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read))
 }
