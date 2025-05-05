@@ -1,5 +1,24 @@
 'use strict'
 
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID()
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read' : 'not read'}`
+    }
+
+    changeReadStatus() {
+        this.read = !this.read
+    }
+
+}
+
 const myLibrary = []
 
 addBookToLibrary('It', 'Stephen King', 300, true)
@@ -7,25 +26,6 @@ addBookToLibrary('The Shining', 'Stephen King', 350, true)
 addBookToLibrary('Watchmen', 'Alan Moore', 150, true)
 addBookToLibrary('Firetrucks', 'Fred F. Firetruck', 432, false)
 createLibrary()
-
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
-    }
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID()
-}
-
-Book.prototype.info = function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read' : 'not read'}`
-}
-
-Book.prototype.changeReadStatus = function () {
-    this.read = !this.read
-}
 
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read))
