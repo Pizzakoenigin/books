@@ -1,4 +1,4 @@
-'use strict'
+import changeReadingStatus from './changeStatus.js' 
 
 class Book {
     constructor(title, author, pages, read) {
@@ -14,7 +14,7 @@ class Book {
     }
 
     changeReadStatus() {
-        this.read = !this.read
+        changeReadingStatus()
     }
 
 }
@@ -82,7 +82,7 @@ function removeBook(id) {
 
 function toggleReadingStatusBook(id) {
     let findID = myLibrary.findIndex((book) => book.id == id)
-    myLibrary[findID].changeReadStatus()
+    myLibrary[findID].changeReadingStatus()
     document.querySelector('.library-container').innerHTML = ''
     createLibrary()
 }
